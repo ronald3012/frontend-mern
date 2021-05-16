@@ -37,9 +37,6 @@ const fetchConToken = (endpoint, data,method='GET') => {
   }
 }
 
-
-
-
 export {
     fetchSinToken,
     fetchConToken

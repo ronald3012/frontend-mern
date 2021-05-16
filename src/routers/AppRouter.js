@@ -6,6 +6,7 @@ import { startChecking } from '../actions/authActions';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import HomeView from '../pages/HomeView';
+import RegisterView from '../pages/RegisterView';
 
 export const AppRouter = () => {
 
@@ -17,7 +18,7 @@ export const AppRouter = () => {
   }, [dispatch])
 
   if(checking){
-    return <h5>Espere...</h5>
+    return <h5> Espere...</h5>
   }
 
   return (
@@ -30,6 +31,12 @@ export const AppRouter = () => {
             component={LoginView}
             isAuthenticated={!!uid}
             />
+            <PublicRoute 
+            exact
+            path='/register'
+            component={RegisterView}
+            isAuthenticated={!!uid}
+            />            
             <PrivateRoute 
             exact
             path='/'

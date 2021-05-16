@@ -1,7 +1,8 @@
 import { fetchSinToken, fetchConToken } from '../helpers/fetch';
 import { types } from '../types/types';
+import { taskLogout } from './taskActions';
 
-export const startLogin = (email, password) => {
+export const startLogin = ( email, password ) => {
     
   return async (dispatch) => {
     const resp = await fetchSinToken('auth', { email, password }, 'POST');
@@ -20,7 +21,7 @@ export const startLogin = (email, password) => {
   };
 };
 
-export const startRegister = (email, password, name) => {
+export const startRegister = ( email, password, name ) => {
 
   return async(dispatch)=>{
     const resp = await fetchSinToken('auth/new', { name, email, password }, 'POST');
@@ -54,7 +55,8 @@ export const startChecking = () => {
 export const startLogout = () => {
   return (dispatch)=>{
     localStorage.clear()
-    dispatch(logout())
+    dispatch(logout());
+    dispatch(taskLogout());
   }
 }
 
@@ -66,7 +68,6 @@ const login = (user) => ({
   type: types.authLogin,
   payload: user,
 });
-
 
 const logout = () => ({
   type: types.authLogout

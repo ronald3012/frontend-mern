@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { startLogin } from '../actions/authActions';
 import useForm from '../hooks/useForm';
 
@@ -20,8 +21,9 @@ const LoginView = () => {
     return (
         <div className="login">
             <img src="/assets/img/logo.png" alt="Logo"/>
-            <h1>Todo List</h1>
+            <h1>Login</h1>
             <form onSubmit={handleOnSubmit} className="formLogin">
+
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" autoComplete="off" onChange={setForm} value={email} />
 
@@ -29,6 +31,7 @@ const LoginView = () => {
                 <input type="password" name="password" autoComplete="off" onChange={setForm} value={password} />
 
                 <button>Login</button>
+                <p className="btn-register">or <Link to="register">Create an account</Link></p>
             </form>
         </div>
     )

@@ -1,29 +1,46 @@
+import { useRef } from "react";
+import { useDispatch } from "react-redux"
+import { taskStartDelete, taskStartUpdate } from "../actions/taskActions";
 
 
-const Task = () => {
+const Task = ({task:{ _id,color,etiquetas,title,description,date,time,completed }, task}) => {
+    
+    const dispatch = useDispatch();
+    const taskElement = useRef(null);
+    const loadingRef = useRef(null);
+
+    const handleDeleteTask = ()=>{
+        loadingRef.current.style.display = 'inherit';
+        dispatch( taskStartDelete( _id,taskElement ) );
+    }
+    const handleTaskCompleted = ()=>{
+        dispatch( taskStartUpdate({...task,completed:!completed},taskElement) );
+    }
+
     return (
-        <div class="task" id="1" style={{background: 'rgb(34, 176, 176)'}} >
-                        <div class="header">
-                            <span class="date">2021-05-20 - 13:06</span>
-                            <label class="switch">
-                                <input type="checkbox" />
-                                <span class="slider round"></span>
+        <div ref={taskElement} className="task" style={{background: color}} >
+                        <div className="header">
+                            <span className="date">{date} - {time}</span>
+                            <label className="switch">
+                                <input type="checkbox" checked={completed} onChange={handleTaskCompleted} />
+                                <span className="slider round"></span>
                             </label>
                         </div>
-                        <div class="body">
-                            <h3 class="title">Task 1</h3>
-                            <p class="descripcion">Description 1</p>
+                        <div className="body">
+                            <h3 className="title">{title}</h3>
+                            <p className="descripcion">{description}</p>
                         </div>
-                        <div class="footer">
-                            <div class="etiquetas">
-                                <div class="etiqueta">
-                                    <img class="icon-delete" src="assets/img/home.png" alt="" />
-                                </div>
+                        <div className="footer">
+                            <div className="etiquetas">
+                                {
+                                    etiquetas.split(',').map(e=><div key={e} className="etiqueta"><img className="icon-delete" src={`assets/img/${e}.png`} alt="" /></div>)
+                                }
                             </div>
-                            <button class="btn-delete">
-                                <img class="icon-delete" src="assets/img/delete.png" alt="" />
+                            <button className="btn-delete" onClick={handleDeleteTask}>
+                                <img className="icon-delete" src="assets/img/delete.png" alt="" />
                             </button>
                         </div>
+                        <div ref={loadingRef} className="loading">Espere...</div>
                 </div>
     )
 }

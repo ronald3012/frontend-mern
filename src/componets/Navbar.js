@@ -12,8 +12,8 @@ const Navbar = () => {
 
     return (
         <nav className="menu">
-                {name}
-                <Link to="/login" onClick={handleLogout} >Logout  》</Link>
+                <Link to="/login" onClick={handleLogout} > ◅ Logout</Link>
+                👤 {name}
         </nav>
     )
 }
