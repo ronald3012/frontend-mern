@@ -22,7 +22,7 @@ const RegisterView = () => {
     }
     return (
         <div className="register">
-            <img src="/assets/img/logo.png" alt="Logo"/>
+            <img src="./assets/img/logo.png" alt="Logo"/>
             <h1>Register</h1>
             <form onSubmit={handleOnSubmit} className="formRegister">
 

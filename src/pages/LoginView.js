@@ -20,7 +20,7 @@ const LoginView = () => {
     }
     return (
         <div className="login">
-            <img src="/assets/img/logo.png" alt="Logo"/>
+            <img src="./assets/img/logo.png" alt="Logo"/>
             <h1>Login</h1>
             <form onSubmit={handleOnSubmit} className="formLogin">
 
